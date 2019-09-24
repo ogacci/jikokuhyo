@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="img/manifestshimo.json">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="img/nishitetu100x100.png" />
+<link rel="apple-touch-icon" href="img/nishitetu100x100g.png" />
 <title>下大利駅時刻表</title>
 <script src="./jquery-3.4.1.min.js"></script>
 <style>
@@ -61,7 +61,7 @@ $(function() {
 	var gJP = {"kudari":"下り","nobori":"上り","normal":"平日","holiday":"休日"};
 	
 	function getData(callback){
-		$.getJSON("./shimooori.json" , function(data) {
+		$.getJSON("./data/shimooori.json" , function(data) {
 			callback(data);
 		});
 	}

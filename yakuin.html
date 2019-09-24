@@ -100,6 +100,7 @@ $(function() {
 		var minDatas = gData[gDayType][gDirection]['hour' + hour];
 		var strHTML = "";
 		var className = "";
+		var intMin;
 		for(var i=0; i<minDatas.length; i++){
 			if ( minDatas[i].match(/急/)) {
 				className="green";
@@ -108,7 +109,8 @@ $(function() {
 			}else{
 				className = "";
 			}
-			if(hour == nowHour && minDatas[i] > nowMin){
+			intMin = minDatas[i].replace(/[^0-9]/g, '');
+			if(hour == nowHour && intMin > nowMin){
 				if(className == ""){
 					className = "Soon";
 				}else{

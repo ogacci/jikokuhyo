@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#20190924 03
+#20190924 04
 jquery-3.4.1.min.js
 favicon.ico
 yakuin.html
@@ -7,6 +7,6 @@ data/yakuin.json
 shimooori.html
 data/shimooori.json
 img/manifestshimo.json
-img/manifest.json
+img/manifestyak.json
 img/nishitetu100x100.png
 img/nishitetu100x100g.png

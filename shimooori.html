@@ -20,6 +20,9 @@ body {
 .green{
 	color: #0a0;
 }
+.Soon {
+	font-weight:bold;
+}
 h1 span{
 	margin-left:15px;
 }
@@ -92,6 +95,8 @@ $(function() {
 		}else{
 			$('#titleDay').removeClass('red');
 		}
+		var nowHour = new Date().getHours();
+		var nowMin = new Date().getMinutes();
 		var minDatas = gData[gDayType][gDirection]['hour' + hour];
 		var strHTML = "";
 		var className = "";
@@ -102,6 +107,13 @@ $(function() {
 				className="red";
 			}else{
 				className = "";
+			}
+			if(hour == nowHour && minDatas[i] > nowMin){
+				if(className == ""){
+					className = "Soon";
+				}else{
+					className += " Soon";
+				}
 			}
 			strHTML += "<p class=\"" + className + "\">" + minDatas[i] + "</p>\n";
 		}

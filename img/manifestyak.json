@@ -1,0 +1,11 @@
+{
+  "lang": "ja",
+  "name": "薬院駅時刻表",
+  "short_name": "薬院駅時刻表",
+  "icons": [{
+        "src": "nishitetu100x100.png",
+        "sizes": "100x100",
+        "type": "image/png"
+      }],
+  "display": "browser"
+}

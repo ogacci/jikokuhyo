@@ -23,8 +23,15 @@ body {
 .Soon {
 	font-weight:bold;
 }
+#loading{
+	color:red;
+}
 h1 span{
 	margin-left:15px;
+}
+#main {
+	display:block;
+	overflow-y:auto;
 }
 #minlist {
 	margin: 0px 20px 0px;
@@ -33,15 +40,14 @@ h1 span{
 	float: left;
 	display: table-cell;
 	vertical-align:top;
-	margin: 50px 10px 50px;
+	margin: 1.0em 10px 1.0em;
 	padding:0;
 	line-height:1.1em;
 	font-size: 1.5em;
-	width: 150px;
+	width: 2.8em;
 	text-align:center;
 }
 #BtnArea{
-    padding: 100px 0 30px;
     position: fixed;/*←絶対位置*/
     bottom: 0; /*下に固定*/
     width: 100%;
@@ -120,6 +126,7 @@ $(function() {
 			strHTML += "<p class=\"" + className + "\">" + minDatas[i] + "</p>\n";
 		}
 		$('#minlist').html(strHTML);
+		$('#loading').hide();
 	}
 	
 	getData(function (data){
@@ -135,12 +142,18 @@ $(function() {
 	
 	
     $('#prev').click(function() {
-    	var prevHour = getPrevHour();
-		showHourData(prevHour);
+		$('#loading').show();
+		setTimeout(function(){
+	    	var prevHour = getPrevHour();
+			showHourData(prevHour);
+		}, 5);
     });
     $('#next').click(function() {
-    	var nextHour = getNextHour();
-		showHourData(nextHour);
+		$('#loading').show();
+		setTimeout(function(){
+	    	var nextHour = getNextHour();
+			showHourData(nextHour);
+		}, 5);
     });
     $('#now').click(function() {
 		var hour = new Date().getHours();
@@ -169,11 +182,24 @@ $(function() {
 		showHourData(curHour);
 	});
 
+	//高さ調整
+	$('#main').height($(window).height() - $('#BtnArea').height());
+
+	// PCならフォントサイズ小さく
+    var ua = navigator.userAgent;
+	if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
+		//CSSのまま
+	}else{
+		$('html').css('font-size','20px');
+	}
 });
 </script>
+<div id="wrapper">
+<div id="main">
 <h1>下大利駅時刻表<span id="titleDir">下り</span><span id="titleDay">平日</span></h1>
-<h2 id="hour"></h2>
+<h2><span id="hour"></span><span id="loading">loading...</span></h2>
 <div id="minlist"></div>
+</div><!--main-->
 <div id="BtnArea">
 <input type="button" id="direction"  value="上り">
 <input type="button" id="weekDay"  value="休日">
@@ -182,5 +208,6 @@ $(function() {
 <input type="button" id="next" value="次へ">
 </div>
 
+</div><!--wrapper-->
 </body>
 </html>

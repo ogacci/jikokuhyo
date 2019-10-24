@@ -198,8 +198,8 @@ $(function() {
 		showHourData(curHour);
 	});
 	//スワイプ
-	$('#main').on( 'swipeleft', showPrev );
-	$('#main').on( 'swiperight', showNext );
+	$('#main').on( 'swipeleft', showNext );
+	$('#main').on( 'swiperight', showPrev );
 
 	//高さ調整
 	$('#main').height($(window).height() - $('#BtnArea').height());

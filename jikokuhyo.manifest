@@ -1,6 +1,8 @@
 CACHE MANIFEST
-#20191001 01
-jquery-3.4.1.min.js
+#20191024 03
+jquery-2.2.4.min.js
+jquery.mobile.min.js
+jquery.mobile-1.4.5.min.css
 favicon.ico
 yakuin.html
 data/yakuin.json

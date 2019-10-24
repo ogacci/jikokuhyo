@@ -2,11 +2,14 @@
 <html manifest="jikokuhyo.manifest">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="img/manifestyak.json">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="img/nishitetu100x100.png" />
+<link rel="stylesheet" href="./jquery.mobile-1.4.5.min.css" />
 <title>薬院駅時刻表</title>
-<script src="./jquery-3.4.1.min.js"></script>
+<script src="./jquery-2.2.4.min.js"></script>
+<script src="./jquery.mobile.min.js"></script>
 <style>
 html {
 	font-size: 36px;
@@ -34,6 +37,12 @@ h1 span{
 	display:block;
 	overflow-y:auto;
 }
+#main h1{
+	font-size: 7vw;
+}
+#main h2{
+	font-size: 6vw;
+}
 #minlist {
 	margin: 0px 20px 0px;
 }
@@ -41,10 +50,10 @@ h1 span{
 	float: left;
 	display: table-cell;
 	vertical-align:top;
-	margin: 1.0em 10px 1.0em;
+	margin: 1.0em 2px 1.0em;
 	padding:0;
 	line-height:1.1em;
-	font-size: 1.5em;
+	font-size: 5.5vw;
 	width: 2.8em;
 	text-align:center;
 }
@@ -54,10 +63,14 @@ h1 span{
     width: 100%;
     text-align:center;
 }
-#BtnArea input[type="button"]{
-	width: 18%;
-	height: 100px;
-	font-size: 36px;
+#BtnArea > div{
+	width:100%;
+	position:relative;
+	left:5%;
+}
+.ui-btn {
+    width: 18% !important;
+    padding:0.7em 0em;
 }
 </style>
 </head>
@@ -142,20 +155,22 @@ $(function() {
 	});
 	
 	
-    $('#prev').click(function() {
+    $('#prev').click(showPrev);
+    function showPrev() {
 		$('#loading').show();
 		setTimeout(function(){
 	    	var prevHour = getPrevHour();
 			showHourData(prevHour);
 		}, 5);
-    });
-    $('#next').click(function() {
+    }
+    $('#next').click(showNext);
+    function showNext() {
 		$('#loading').show();
 		setTimeout(function(){
 	    	var nextHour = getNextHour();
 			showHourData(nextHour);
 		}, 5);
-    });
+    }
     $('#now').click(function() {
 		var hour = new Date().getHours();
 		showHourData(hour);
@@ -182,6 +197,9 @@ $(function() {
 		var curHour = $('#hour').text().replace('時','');
 		showHourData(curHour);
 	});
+	//スワイプ
+	$('#main').on( 'swipeleft', showPrev );
+	$('#main').on( 'swiperight', showNext );
 
 	//高さ調整
 	$('#main').height($(window).height() - $('#BtnArea').height());
@@ -201,12 +219,12 @@ $(function() {
 <h2><span id="hour"></span><span id="loading">loading...</span></h2>
 <div id="minlist"></div>
 </div><!--main-->
-<div id="BtnArea">
-<input type="button" id="direction"  value="上り">
-<input type="button" id="weekDay"  value="休日">
-<input type="button" id="prev" value="前へ">
-<input type="button" id="now"  value="現在">
-<input type="button" id="next" value="次へ">
+<div id="BtnArea" data-role="controlgroup" data-type="horizontal">
+<button id="direction">上り</button>
+<button id="weekDay">休日</button>
+<button id="prev">前へ</button>
+<button id="now">現在</button>
+<button id="next">次へ</button>
 </div>
 
 </div><!--wrapper-->

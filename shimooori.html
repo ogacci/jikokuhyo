@@ -27,6 +27,9 @@ body {
 	font-weight:bold;
 	text-shadow:1px 1px 0 #00A;
 }
+.Gone {
+	background-color: #AAAAAA;
+}
 #loading{
 	color:red;
 }
@@ -83,6 +86,16 @@ $(function() {
 	var weeks = new Array('日','月','火','水','木','金','土');
 	var gJP = {"kudari":"下り","nobori":"上り","normal":"平日","holiday":"休日"};
 	
+	//class名をスペースで連結
+	function classAdd(className, addClass){
+		var rtn = className;
+		if(className == ""){
+			rtn = addClass;
+		}else{
+			rtn += " " + addClass;
+		}
+		return rtn;
+	}
 	function getData(callback){
 		$.getJSON("./data/shimooori.json" , function(data) {
 			callback(data);
@@ -125,17 +138,15 @@ $(function() {
 			if ( minDatas[i].match(/急/)) {
 				className="green";
 			}else if(minDatas[i].match(/特/)){
-				className="red";
+				className = "red";
 			}else{
 				className = "";
 			}
 			intMin = minDatas[i].replace(/[^0-9]/g, '');
 			if(hour == nowHour && intMin > nowMin){
-				if(className == ""){
-					className = "Soon";
-				}else{
-					className += " Soon";
-				}
+				className = classAdd(className, "Soon");
+			}else if(hour == nowHour && intMin < nowMin){
+				className = classAdd(className, "Gone");
 			}
 			strHTML += "<p class=\"" + className + "\">" + minDatas[i] + "</p>\n";
 		}

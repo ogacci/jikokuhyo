@@ -30,6 +30,10 @@ body {
 .Gone {
 	background-color: #AAAAAA;
 }
+.GoneGreen {
+	background-color: #AAAAAA;
+	text-shadow:1px 1px 0 #00A;
+}
 #loading{
 	color:red;
 }
@@ -147,6 +151,9 @@ $(function() {
 				className = classAdd(className, "Soon");
 			}else if(hour == nowHour && intMin < nowMin){
 				className = classAdd(className, "Gone");
+				if(className.match(/green/){
+					className = classAdd(className, "GoneGreen");
+				}
 			}
 			strHTML += "<p class=\"" + className + "\">" + minDatas[i] + "</p>\n";
 		}

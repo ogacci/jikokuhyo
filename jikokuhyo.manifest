@@ -1,14 +1,11 @@
 CACHE MANIFEST
-#20220919 02
-jquery-2.2.4.min.js
-jquery.mobile.min.js
-jquery.mobile-1.4.5.min.css
+#20240404 1425
+jquery-3.4.1.min.js
 favicon.ico
 yakuin.html
-data/yakuin.json
+yakuin.json
 shimooori.html
-data/shimooori.json
-img/manifestshimo.json
-img/manifestyak.json
-img/nishitetu100x100.png
-img/nishitetu100x100g.png
+shimooori.json
+manifestshimo.json
+manifest.json
+nishitetu100x100.png
